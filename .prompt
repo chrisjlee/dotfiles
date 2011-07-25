@@ -1,0 +1,19 @@
+# Prompts
+#####################################
+
+#PS1='\n\[\033[0;36m\]\u@\h: \[\033[0;34m\]\W\[\033[$((${COLUMNS:-80}-9))G\]\[\033[0;36m\][\t]\n\$\[\033[0m\] '
+# Ideal
+#if [ "$UID" != 0 ]; then
+#        PS1='\n\[\033[0;36m\]\u@\h: \[\033[0;34m\]\W\[\033[71G\]\[\033[0;36m\][\t]\[\033[0m\]\n\$ '
+#else
+#        # root
+#        PS1='\n\[\033[0;33m\]\u@\h: \[\033[0;31m\]\W\[\033[71G\]\[\033[0;33m\][\t]\[\033[0m\]\n\$ '
+#fi
+
+# Setup color Variables
+#############################
+STARTFGCOLOR='\e[0;36m';
+STARTBGCOLOR="\e[0;32m"
+ENDCOLOR="\e[0m"
+
+export PS1="$STARTFGCOLOR$STARTBGCOLOR[\u@\h \e[01;35m\w$STARTBGCOLOR]$ENDCOLOR\n]$\[\033[0m\] "

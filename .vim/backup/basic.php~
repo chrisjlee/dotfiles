@@ -1,0 +1,36 @@
+<?php include_once('./ti.php'); ?>
+<?php $page = $this->page; ?>
+<!doctype html>
+<html>
+	<head>
+		<title>Dallas Brazilian SDA Youth Choir - <?php echo $page; ?></title>
+		<link href="template/style.css" rel="stylesheet" type="text/css" media="all" /> 
+		<script src="template/js/jquery.min.js" type="text/javascript"></script>
+		<script src="template/js/basic.js" type="text/javascript"></script>
+		<?php emptyblock('header'); ?>
+	</head>
+	<body class="<?php echo strtolower($page); ?>-page">
+		<div class="header">
+			<h1>Dallas Brazilian SDA Youth Choir - <?php echo $page; ?></h1>
+			<?php if (isset($_SESSION['user_id'])): ?><div class="logout"><a href="#">Logout</a></div><?php endif; ?>
+		</div>
+		<div class="main">
+			<div class="restricted_wrapper">
+				<form class="restricted_login_form" action="index.php" method="post">
+				       <input type="text" id="restricted_email" name="restricted_email" placeholder="E-mail" />
+				       <input type="password" id="restricted_password" name="restricted_password" placeholder="Password" />
+				       <div class="clearfix"></div>
+				</form>
+			</div>
+			<?php startblock('menu'); ?>
+                	<ul class="menu">
+                        	<li><a class="<?php if ($page == "Users") echo "current-menu-item" ?>" href="?action=page&page=users">Check in</a></li>
+				<li><a class="<?php if ($page == "Graphs") echo "current-menu-item" ?>" href="?action=page&page=graphs">Graphs</a></li>
+				<li><a class="restricted_area <?php if ($page == "Accounts") echo "current-menu-item" ?>" href="?action=page&page=accounts">Accounts</a></li>
+			</ul>            
+			<div class="clearfix"></div>
+			<?php endblock(); ?>
+			<?php emptyblock('content'); ?>
+		</div>
+	</body>
+</html>

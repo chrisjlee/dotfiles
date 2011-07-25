@@ -1,0 +1,54 @@
+$(document).ready(function() {
+
+	$('.modal_login_form').dialog({
+	
+		autoOpen: false,
+		modal: true,
+		width: 500,
+		title: "Use the form below to login",
+                buttons: { 
+			"Login": function() {
+				var email = $('#choir_email').val();
+				var password = $('#choir_password').val();
+        			var dialog = $(this);
+	
+				$.post('index.php', {
+					action: 'login',
+					email: email,
+					password: password,
+				}, function(data) {
+					data = $.parseJSON(data);
+
+					if (data['validade'] == 'true') {
+						$('#choir_email').val('');
+						$('#choir_password').val('');
+						var id = data['id'];
+						$(id).addClass('logged-in');
+						dialog.dialog("close");
+					}
+					else {
+						$('.error').remove();
+						$('.modal_login_form').append('<div class="error"></div>'); 
+
+						$.each(data['error'], function(index, value) {                          
+							$('.error').append('<p><strong>Error #'+(index + 1)+':</strong> '+value+'</p>');
+						});
+					}
+				});
+                        },
+			Cancel: function() {
+                         	$(this).dialog("close");
+			}
+		},
+		close: function() {
+		       $.remove('.error');
+		}
+
+	});
+
+	$('.card').button().click(function() {
+		$('.modal_login_form').dialog("open");
+	});
+	
+
+});

@@ -1,0 +1,279 @@
+<?php
+
+require_once('db.php');
+
+class Request {
+
+	private $query;
+	private $out;
+
+	public $page;
+
+	function __construct($query=null) {
+
+                global $user;
+
+	   	if (!empty($_GET)) { $query = $_GET; }
+		else if (!empty($_POST)) { $query = $_POST; }
+	   	else { $query = DEFAULT_QUERY; }
+
+		$this->parse_query($query);
+
+		$template = '';
+
+		if (isset($this->query['action'])) {
+
+			if ($this->query['action'] == 'page') {
+
+				if (!isset($_SESSION['user_id'])) { $this->query['page'] = 'login'; }
+
+				switch ($this->query['page']) {
+
+					case 'login':
+						$template = 'login.php';
+						$this->page = 'Login';
+					break;
+
+					case 'graph':
+					case 'graphs':
+                                              	$template = 'graphs.php';
+						$this->page = 'Graphs';
+					break;
+
+					case 'account':
+					case 'accounts':
+                                              	$template = 'accounts.php';
+						$this->page = 'Accounts';
+						$user = new User();
+						$user->query_members();
+					break;
+
+					case 'users':
+					case 'user':
+					case 'default':
+						$template = 'users.php';
+						$this->page = 'Users';
+						$user = new User();
+						$user->query_members();
+					break;
+
+				}
+
+				ob_start();
+				include TEMPLATE_DIR.$template;
+				flushblocks();
+				$this->out = ob_get_clean();
+
+			}
+
+			if ($this->query['action'] == 'write') {
+	
+				$out = array(
+                                	'validade' => 'true',
+					'error' => array()
+				);
+
+				$attr = array();
+
+				$id = (int)$this->query['id'];
+				$name = $this->query['name'];
+                                $email = $this->query['email'];
+				$password = $this->query['password'];
+				$password_repeat = $this->query['password_repeat'];
+				$avatar = $this->query['avatar'];
+ 	      			$voice = $this->query['voice'];
+				print_r($this->query['permissions']);
+				$permissions = json_encode($this->query['permissions']);
+				echo $permissions;
+
+				if ($name == '' AND $email == '' AND $voice == '') {
+					$out['validade'] = 'false';
+					$out['error'][] = 'You left some required field blank.';
+				}
+
+                                if ($id == '' AND $password == '') {
+                                 	$out['validade'] = 'false';
+					$out['error'][] = 'Password field cannot be blank if you are creating a new account.';
+				}
+
+				if ($password != '' AND $password !== $password_repeat) {
+                                 	$out['validade'] = 'false';
+					$out['error'][] = 'Your password does not match the confirmation password.';
+				}
+
+				if ($id != '') $attr['id'] = $id;
+				if ($name != '') $attr['username'] = $name;
+				if ($email != '') $attr['email'] = $email;
+				if ($password != '') $attr['password'] = md5($password);
+				if ($avatar != '') $attr['thumb'] = $avatar;
+				if ($voice != '') $attr['voice'] = $voice;          
+				if ($permissions != '') $attr['permissions'] = $permissions;
+                                
+				/*
+				$find = new User($attr);
+				if ($id == '' AND $find->find_user('email')) {
+                                 	$out['validade'] = 'false';
+					$out['error'][] = 'E-mail already in use.';
+				}
+				*/
+
+				if ($id != '' AND $out['validade'] == 'true') {
+					$user = new User($id);
+					$user->find_user('id');
+					$user->the_user();
+					$user->change_user($attr);
+					$user->update();
+					$out['type'] = 'update';
+					$out['name'] = $name;
+					$out['id'] = $id;
+				}
+				elseif ($id == '' AND $out['validade'] == 'true') {
+					$user = new User($attr);
+					$user->insert();
+
+					$out['type'] = 'insert';
+					$user->find_user('email');
+					$user->the_user();
+					$id = $user->get_id();
+
+				     // clean this. MVC it.
+					$out['output'] = "<div id='$id' class='account-selector' style='display: none;' title='$name'>";
+					$out['output'] .= "<img class='avatar' src='$avatar' />";
+					$out['output'] .= "<div class='name'>$name</div>";
+					$out['output'] .= "<div class='attendance'>Attendance 0</div>";
+					$out['output'] .= "<a class='delete'>Delete account</a>";
+					$out['output'] .= "<div class='clearfix'></div>";
+					$out['output'] .= "</div>";
+
+				}
+
+				$this->out = json_encode($out);
+
+			}
+
+			if ($this->query['action'] == 'delete-account') {
+
+				$id = (int)$this->query['id'];
+
+                         	$user = new User($id);
+				$out = array(
+                                	'validade' => 'true',
+					'error' => array()
+				);
+				
+				if (!$user->destruct()) {
+					$out['validade'] = 'false';
+				        $out['error'][] = "There was an error processing your account deletion. Please, try again later.";
+				}
+
+				$this->out = json_encode($out);
+
+			}
+			
+			if ($this->query['action'] == 'close') {
+                       	       session_unset();
+			}
+
+			if ($this->query['action'] == 'start' 
+			|| $this->query['action'] == 'restricted'
+			|| $this->query['action'] == 'login') {
+
+				$login_user = new User($this->query['email']);
+                                $out = array(
+					'validade' => 'true',
+					'error' => array()
+				);
+
+				if (!$login_user->validate($this->query['password'])) {
+					$out["validade"] = 'false';
+					$out['error'][] = "Wrong email/password combination.";
+				}
+
+				if ($this->query['action'] == 'restricted' AND !$login_user->is_admin('accounts-panel')) {
+					$out["validade"] = 'false';
+					$out['error'][] = "You don't have the necessary permission access the accounts panel.";
+                                }
+
+				if ($this->query['action'] == 'start' AND !$login_user->is_admin('superlogin')) {
+					$out["validade"] = 'false';
+					$out['error'][] = "You don't have the necessary permission to log in.";
+                                }
+
+				if ($out['validade'] == 'true') {
+					$_SESSION['user_id'] = $login_user->get_id();
+					$out['id'] = '#card-'.$login_user->get_id();
+				}
+
+				if (!$login_user->checkin()) {
+					$out["validade"] = 'false';
+				        $out['error'][] = "There was an error processing your checkin. Please, try again later.";
+				}
+
+				$this->out = json_encode($out);
+
+			}
+
+			if ($this->query['action'] == 'data') {
+
+				$out = array();
+
+				if ($this->query['data'] == 'total') {
+                                	$users = new User();
+					$users->query_members();
+					while ($users->the_user()) {
+						$out['users'][] = $users->get_name();
+						$out['total_checkins'][] = $users->total_checkins();
+					}
+				}
+				if ($this->query['data'] == 'overall') {
+					$checkins = new Checkin();
+					$day_count = array();
+					while ($checkins->the_checkin()) {
+                                         	@$day_count[$checkins->the_day()]++;
+					}
+					foreach ($day_count as $day => $count) {
+						$out['days'][] = $day;
+						$out['attendance'][] = $count;
+					}
+				}
+				if ($this->query['data'] == 'account-info') {
+					$id = (int)$this->query['id'];
+
+					$user = new User($id);
+					$out['id'] = $user->get_id();
+					$out['name'] = $user->get_name(); 
+					$out['email'] = $user->get_email();
+					$out['voice'] = $user->get_voice();
+					$out['avatar'] = $user->get_thumb();
+					$out['permissions'] = $user->get_permissions();
+				}
+
+			      	$this->out = json_encode($out);
+
+			}
+
+		}
+
+	}
+
+	function __toString() {
+		return (string)$this->out;
+	}
+
+        public function is_page() {
+		if (isset($this->query['action'])) {
+			if ($this->query['action'] == 'page') return true;
+			else false;
+		}
+		else false;
+	}
+
+	private function parse_query($query) {
+		if (is_array($query)) { $this->query = $query; }
+		else { parse_str($query, $this->query); }
+	}
+
+
+}
+
+?>

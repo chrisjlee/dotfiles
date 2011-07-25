@@ -1,0 +1,43 @@
+#
+# Virtual Hosts
+#
+# If you want to maintain multiple domains/hostnames on your
+# machine you can setup VirtualHost containers for them. Most configurations
+# use only name-based virtual hosts so the server doesn't need to worry about
+# IP addresses. This is indicated by the asterisks in the directives below.
+#
+# Please see the documentation at 
+# <URL:http://httpd.apache.org/docs/2.2/vhosts/>
+# for further details before you try to setup virtual hosts.
+#
+# You may use the command line option '-S' to verify your virtual host
+# configuration.
+#
+#
+# Use name-based virtual hosting.
+#
+
+NameVirtualHost km.l:*
+
+<Directory "/home/chris/workspace/km.l/html">
+        Options Indexes Includes execCGI
+        AllowOverride All
+        Order Allow,Deny
+        Allow From All
+</Directory>
+
+<VirtualHost km.l>
+    DocumentRoot /home/chris/workspace/km.l/html
+    ServerName km.l
+    ErrorLog logs/km.l.error
+    <IfModule mod_rewrite.c>
+        <Directory "/home/chris/workspace/km.l/html">
+            RewriteEngine on
+            # needed by Drupal 7 for "clean URLs"
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteCond %{REQUEST_URI} !=/favicon.ico
+            RewriteRule ^ index.php [L]
+        </Directory>
+    </IfModule>
+</VirtualHost>

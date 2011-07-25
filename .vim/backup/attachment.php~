@@ -1,0 +1,69 @@
+<?php get_header(); ?>
+<?php global $wpdb; ?>
+<body id="tpl-blog" <?php if(function_exists('body_class')) body_class(); ?> >
+<?php get_template_part( 'tpt-header', 'page' ); ?>
+	<div id="container" class="container_16">
+		<div id="content">
+    			<div id="content-body" class="grid_11 alpha">
+				<?php if (have_posts()): the_post(); ?>
+					<div class="blog-entry single hentry">
+						<?php $curauthor = get_userdata($post->post_author); ?>
+  						<h2 class="first-entry-title entry-title">
+							<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+						</h2>
+	 					<div class="entry-meta">
+							<?php the_post_thumbnail(array(220,130)); ?>
+							<div class="clearfix"></div>
+							<?php echo get_avatar($curauthor->user_email, 40); ?>
+							<strong class="author"><?php echo get_the_author_link(); ?></strong>
+							<span class="job-title"><?php echo $curauthor->job_title; ?></span>
+							<br />
+							<span class="date"><?php the_time('F j, Y'); ?></span>
+							<?php if (wp_attachment_is_image()): ?>
+                                                        <div class="metadata">
+							<?php
+							$metadata = wp_get_attachment_metadata();
+							printf( __( 'View Full size image (%s pixels)', 'twentyten' ),
+								sprintf( '<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>',
+									wp_get_attachment_url(),
+									esc_attr( __( 'Link to full-size image', 'twentyten' ) ),
+									$metadata['width'],
+									$metadata['height']
+								)
+							);
+							?>
+							</div>
+							<?php endif; ?>
+						</div>
+						<div class="entry-summary entry-content">
+							<?php get_template_part('loop', 'attachment'); ?>
+						</div>
+					</div>
+				<?php endif; ?>
+			</div>
+   			<div id="sidebar-primary" class="grid_5 omega">
+				<div class="departments">
+					<ul>
+					<li class="title">Posts by Departments</li>
+					<?php wp_list_categories(array('title_li' => '', 'taxonomy' => 'departments')); ?>
+					</ul>
+				</div>
+				<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/globerunnerseo" width="280" show_face="true" stream="true" header="false"></fb:like-box>
+				<div class="category">
+					<ul>
+					<li class="title">Categories</li>
+					<?php wp_list_categories(array('title_li' => '')); ?>
+					</ul>
+				</div>
+				<div class="authors">
+					<ul>
+					<li class="title">Authors<li>
+					<?php wp_list_authors(array('exclude_admin' => true, 'hide_empty' => false, 'show_fullname' => true)); ?>
+					</ul>
+				</div>
+			</div>
+    		</div><!-- #unnamed -->
+    		<div class="clearfloat"></div>
+		</div><!-- #content -->
+	</div><!-- #container -->
+<?php get_footer(); ?>

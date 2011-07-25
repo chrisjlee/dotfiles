@@ -1,0 +1,102 @@
+<?php
+
+
+add_action('init', 'register_testimonial');
+
+function register_testimonial() {
+
+	$labels = array(
+		'name' => 'Testimonials',
+		'singular_name' => "Testimonial",
+		'add_new' => 'Add New',
+		'add_new_item' => 'Add New Testimonial',
+		'edit_item' => 'Edit Testimonial',
+		'new_item' => 'New Testimonial',
+		'view_item' => 'View Testimonial',
+		'search_items' => 'Search Testimonials',
+		'not_found' => 'No testimonials found',
+		'not_found_in_trash' => 'No testimonials found in Trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Testimonials'
+	);
+
+	register_post_type('testimonials', array(
+		'labels' => $labels,
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'capability_type' => 'post',
+		'hierarchical' => true,
+		'rewrite' => true,
+		'query_var' => true,
+		'supports' => array(
+			'title', 
+			'editor', 
+			'page-attributes',
+			'thumbnail'
+			)
+	));
+
+}
+
+add_action('admin_init', 'create_testimonial_meta_box', 1);
+
+function create_testimonial_meta_box() {
+	global $meta_box;
+
+	add_meta_box("testimonial_web_site", "Client's Website", "show_testimonial_web_site", "testimonials", "side", "high");
+}
+
+function show_testimonial_web_site() {
+	global $meta_box, $post;
+
+	$testimonial = get_post_meta($post->ID, "testimonial_web_site", true);
+	$company = get_post_meta($post->ID, "testimonial_company", true);
+	echo '<label for="testimonial_web_site">Client\'s web site address:</label>';
+	echo '<input type="text" name="testimonial_web_site" value="'.$testimonial.'" />';
+	echo '<br>';
+	echo '<label for="testimonial_company">Client\'s company name:</label>';
+	echo '<input type="text" name="testimonial_company" value="'.$company.'" />';
+	echo '<input type="hidden" name="mytheme_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
+}
+
+add_action('save_post', 'save_testimonial_details');
+
+function save_testimonial_details($post_id) {
+	global $meta_box;
+
+	// verifying nonce
+	if (!wp_verify_nonce($_POST['mytheme_meta_box_nonce'], basename(__FILE__))) return $post_id;
+
+	// uncomment this line to stop metabox autosave
+	//if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
+
+	// checking user permission
+	if ('page' == $_POST['post_type']) {
+		if (!current_user_can('edit_page', $post_id)) {
+			return $post_id;
+		}
+	} elseif (!current_user_can('edit_post', $post_id)) {
+		return $post_id;
+	}
+
+	$old = get_post_meta($post_id, "testimonial_web_site", true);
+	$new = $_POST["testimonial_web_site"];
+
+	if ($new && $new != $old) {
+		update_post_meta($post_id, "testimonial_web_site", $new);
+	} elseif ($new == '' && $old) {
+		delete_post_meta($post_id, "testimonial_web_site");
+	}
+
+	$old = get_post_meta($post_id, "testimonial_company", true);
+	$new = $_POST["testimonial_company"];
+
+	if ($new && $new != $old) {
+		update_post_meta($post_id, "testimonial_company", $new);
+	} elseif ($new == '' && $old) {
+		delete_post_meta($post_id, "testimonial_company");
+	}
+}
+
+?>

@@ -1,0 +1,52 @@
+<?php get_header(); ?>
+<?php global $wpdb; ?>
+<body id="tpl-blog" <?php if(function_exists('body_class')) body_class(); ?> >
+<?php get_template_part( 'tpt-header', 'page' ); ?>
+	<div id="container" class="container_16">
+		<div id="content">
+    		<div class="sxn grid_16 alpha omega">
+			<div class="grid_16 hoverbar">
+				<?php $most_commented = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts WHERE `post_status` = 'publish' ORDER BY comment_count DESC LIMIT 0,10"); ?>
+				<ul>
+					<?php foreach ($most_commented as $post): ?>
+						<?php setup_postdata($post); ?>
+						<li> 
+						<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+						</li>	
+					<?php endforeach; ?>
+				</ul>
+			</div>
+    			<div id="content-body" class="grid_11 alpha">
+				<?php query_posts('category_name=fun'); ?>
+				<?php for ($i = 0; have_posts(); $i++): the_post(); ?>
+					<?php get_template_part("loop", "blog"); ?>
+				<?php endfor; ?>
+			</div>
+   			<div id="sidebar-primary" class="grid_5 omega">
+				<div class="departments">
+					<ul>
+					<li class="title">Posts by Departments</li>
+					<?php wp_list_categories(array('title_li' => '', 'taxonomy' => 'departments')); ?>
+					</ul>
+				</div>
+				<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/globerunnerseo" width="280" show_face="true" stream="true" header="false"></fb:like-box>
+				<div class="category">
+					<ul>
+					<li class="title">Categories</li>
+					<?php wp_list_categories(array('title_li' => '')); ?>
+					</ul>
+				</div>
+				<div class="authors">
+					<ul>
+					<li class="title">Authors<li>
+					<?php wp_list_authors(array('show_fullname' => true)); ?>
+					</ul>
+				</div>
+			</div>
+    		</div><!-- #unnamed -->
+    		<div class="clearfloat"></div>
+		<div class="bottom-meta"><?php dynamic_sidebar('front'); ?></div>
+		</div><!-- #content -->
+	</div><!-- #container -->
+<?php get_footer(); ?>

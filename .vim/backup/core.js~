@@ -1,0 +1,11 @@
+$(document).ready( function() {
+
+	jQuery("attachment-entry p a").click(function() {
+		jQuery(this).colorbox();
+        });
+	
+	jQuery("#content a[target='__blank']").click(function() {
+		jQuery(this).colorbox();
+        });
+
+});

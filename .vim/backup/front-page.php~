@@ -1,0 +1,202 @@
+<?php get_header(); ?>
+<body id="tpl-front" <?php if(function_exists('body_class')) body_class(); ?> >
+<?php get_template_part( 'tpt-header', 'core' ); ?>
+
+<?php if (is_mobile()): ?>
+
+	<?php wp_reset_query(); ?>
+	<?php query_posts('post_type=portfolio&posts_per_page=4&order=asc&orderby=menu_order'); ?>
+	<?php if (have_posts()) : ?>
+	<div class="portfolio grid_7">
+		<h3><a href="<?php bloginfo('url'); ?>/our-work">Portfolio</a></h3>
+		<?php while(have_posts()) : the_post(); ?>
+			
+			<a href="<?php the_permalink();  ?>">
+				<div class="port-thumb">
+					<?php the_post_thumbnail(array(1024, 640)); ?>
+					<div class="info">
+						<h4><?php the_title(); ?></h4>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		<?php endwhile; ?>
+	</div>
+	<?php endif; ?>
+
+	<div class="youtube grid_9">
+		<h3><a href="<?php bloginfo('url'); ?>/videos">Video Room</a></h3>
+		<?php wp_reset_query(); ?>
+		<?php query_posts('post_type=external-videos&posts_per_page=4'); ?>
+		<?php for ($i = 0; have_posts(); $i++): the_post(); ?>
+			<div class="video front">
+				<img class="thumb grid_6" src="<?php echo get_post_meta($post->ID, 'thumbnail_url', true); ?>" />
+				<div class="info">
+					<h4><?php the_title(); ?></h4>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		<?php endfor; ?>
+	</div>
+
+	<?php wp_reset_query(); ?>
+	<?php query_posts( 'lost_type=post&cat=-129&posts_per_page=4' ); ?>
+	<?php if ( have_posts() ) : ?>
+		<div id="blog">
+			<h3><a href="blog/">Latest Blogs</a></h3>
+			<?php while ( have_posts() ) : the_post(); ?>
+				<div class="blog-entry">
+					<?php the_post_thumbnail(array(1024, 640)); ?>
+					<div class="info">
+						<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+						<span class="date"><?php the_date(); ?></span>
+						<span>by</span>
+						<a href="<?php echo get_author_posts_url($post->post_author); ?>" class="author"><?php the_author(); ?></a>
+					</div>
+				<div class="clearfix"></div>
+				</div>
+			<?php endwhile; ?>
+		</div>
+	<?php endif; ?>
+
+<?php else: ?>
+<div id="container" class="container_16">
+
+	<?php query_posts( 'post_type=feature' ); ?>
+	<?php if (have_posts()) : ?>
+	<div class="grid_16 hero ui-tabs alpha omega" id="hero-1">
+	<?php for ($i = 0; have_posts(); $i++): the_post(); ?>
+		<div class="tabdiv ui-tabs-hide" id="tab<?php echo $i; ?>">
+			<h2><?php the_title(); ?></h2>
+			<?php the_content(); ?>
+			<?php the_post_thumbnail('full'); ?>
+		</div>
+	<?php endfor; ?>
+	<?php rewind_posts(); ?>
+		<ul class="navigation">
+			<?php for ($i = 0; have_posts(); $i++):  the_post(); ?>
+			<li><a href="#tab<?php echo $i; ?>"></a></li>
+			<?php endfor; ?>
+		</ul>
+	</div>
+	<?php endif; ?>
+
+
+	<div id="content">
+		<?php query_posts( 'post_type=testimonials&order=desc&orderby=menu_order' ); ?>
+		<?php if ( have_posts() ) : ?>
+		<div id="testimonials" class="ui-tabs grid_5">
+			<h4>Proven Results: Ecstatic Clients</h4>
+			<?php for ($i = 0; have_posts(); $i++): the_post(); ?>
+				<div class="tabdiv ui-tabs-hide" id="tab<?php echo $i; ?>">
+					<?php $website = get_post_meta($post->ID, "testimonial_web_site", true); ?>
+					<?php $company = get_post_meta($post->ID, "testimonial_company", true); ?>
+					<div class="content"><?php the_content(); ?></div>
+					<h3 class="client"><?php the_title(); ?></h3>
+					<?php the_post_thumbnail(array(80,80)); ?>
+					<?php if ($company) : ?> <div class="company"><?php echo $company; ?></div><?php endif; ?>
+					<?php if ($website) : ?> <div class="website"><a target="_blank" href="<?php echo $website; ?>"><?php echo $website; ?></a></div><?php endif; ?>
+					<div class="clearfix"></div>
+				</div>
+			<?php endfor; ?>
+			<?php rewind_posts(); ?>
+			<ul class="navigation">
+				<?php for( $i = 0; have_posts(); $i++ ) : the_post(); ?>
+				<li><a href="#tab<?php echo $i; ?>"><?php echo ($i + 1); ?></a></li>
+				<?php endfor; ?>
+				<li><a href="<?php bloginfo('url)'); ?>/testimonials">More</a></li>
+			</ul>
+		</div>
+		<?php endif; ?>
+		<div class="blog grid_6">
+			<?php wp_reset_query(); ?>
+			<?php query_posts( 'lost_type=post&posts_per_page=1&cat=-129' ); ?>
+			<?php if ( have_posts() ) : ?>
+			 	<h4><a href="blog/">Latest Blogs</a></h4>
+				<?php while ( have_posts() ) : the_post(); ?>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<div class="meta"><span class="date"><?php the_date(); ?></span> <span class="author-by">by</span> <a href="<?php echo get_author_posts_url($post->post_author); ?>" class="author"><?php the_author(); ?></a></div>
+					<div class="content"><?php the_excerpt(); ?></div>
+				<?php endwhile; ?>
+				<div class="category"><h5>By Department</h5> <?php echo str_replace('<br />', ' ', wp_list_categories(array('style' => 'none', 'title_li' => 'By Department', taxonomy => 'departments', 'echo' => false))); ?></div>
+			<?php endif; ?>
+		</div>
+		<div class="contact-and-about grid_5">
+			<div class="contact">
+				<?php dynamic_sidebar('contact'); ?>
+				<div class="clearfix"></div>
+			</div>
+			<div class="about">
+				<?php wp_reset_query(); ?>
+				<?php while (have_posts()): the_post(); ?>
+					<h4><?php the_title(); ?></h4>
+					<div><?php the_content(); ?></div>
+				<?php endwhile;?>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="youtube grid_9">
+			<h3><a href="<?php bloginfo('url'); ?>/videos">Video Room</a></h3>
+			<a href="http://www.youtube.com/globerunnerseo"/><img class="channel" src="<?php bloginfo('stylesheet_directory'); ?>/assets/images/youtube-channel.png" /></a>
+			<?php wp_reset_query(); ?>
+			<?php query_posts('post_type=external-videos&posts_per_page=4'); ?>
+			<?php for ($i = 0; have_posts(); $i++): the_post(); ?>
+				<?php if ($i == 0): ?>
+				<div class="video front grid_6">
+					<img class="big-thumb grid_6" src="<?php echo get_post_meta($post->ID, 'thumbnail_url', true); ?>" />
+					<div class="title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="<?php echo str_replace('watch?v=', 'embed/', get_post_meta($post->ID, 'video_url', true)); ?>"><?php the_title(); ?></a></div>
+				</div>
+				<?php else: ?>
+				<div class="video front grid_2">
+					<img class="small-thumb grid_2" src="<?php echo get_post_meta($post->ID, 'thumbnail_url', true); ?>" />
+					<div class="title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" rel="<?php echo str_replace('watch?v=', 'embed/', get_post_meta($post->ID, 'video_url', true)); ?>"><?php the_title(); ?></a></div>
+				</div>
+				<?php endif; ?>
+			<?php endfor; ?>
+		</div>
+		<?php wp_reset_query(); ?>
+		<?php query_posts('post_type=portfolio&posts_per_page=9&order=asc&orderby=menu_order'); ?>
+		<?php if (have_posts()) : ?>
+		<div class="portfolio grid_7">
+			<h3><a href="<?php bloginfo('url'); ?>/our-work">Portfolio</a></h3>
+			<?php while(have_posts()) : the_post(); ?>
+				<span class="port-thumb">
+				<span class="thumb"><?php the_post_thumbnail(array(120,120)); ?></span>
+				<a href="<? the_permalink(); ?>" ><?php the_title(); ?></a>
+				</span>
+			<?php endwhile; ?>
+		</div>
+		<?php endif; ?>
+		<div class="users grid_16">
+			<h3><a href="<?php bloginfo('url'); ?>/company/team">Our Team</a></h3>
+			<div class="author-wrapper">
+				<ul class="author-list">
+					<?php $authors = array_all_users(true); ?>
+					<?php foreach ($authors as $id => $author): ?>
+					<li class="user with-name">
+						<span class="avatar"><?php echo get_avatar($id); ?></span>
+						<?php /* ?>
+						<span class="avatar"><img src="<?php bloginfo('stylesheet_directory'); ?>/thumb.php?f=2&src=<?php echo get_avatar_src($id); ?>" /></span>
+						<?php */ ?>
+						<a class="description" href="<?php echo get_author_posts_url($id); ?>">
+							<span class="name"><?php echo $author->user_firstname.' '.$author->user_lastname; ?></span>
+							<span class="title"><?php echo $author->job_title; ?></span>
+						</a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="carousel-control">
+				<a href="#" class="prev"><<</a>
+				<a href="#" class="next">>></a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="bottom-meta"><?php dynamic_sidebar('front'); ?></div>
+	</div>
+</div><!-- #container -->
+
+<?php endif; ?>
+
+<?php get_footer(); ?>

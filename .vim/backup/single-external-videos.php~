@@ -1,0 +1,55 @@
+<?php get_header(); ?>
+<body id="tpl-single" <?php if(function_exists('body_class')) body_class(); ?> >
+	<?php get_template_part( 'tpt-header', 'core' ); ?>
+	<div id="container" class="container_16">
+		<div id="content" class="hmedia">
+			<?php $q = new WP_Query('post_type=external-videos'); ?>
+			<?php if ($q->have_posts()): ?>
+			<div class="grid_16 hoverbar">
+				<ul>
+				<?php while ($q->have_posts()): $q->the_post(); ?>
+					<li class="video">
+					<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+					<a href="<?php the_permalink(); ?>"><img src="<?php echo get_post_meta($post->ID, 'thumbnail_url', true); ?>" /></a>
+					</li>
+				<?php endwhile; ?>
+				</ul>
+				<div class="carousel-control">
+					<a href="#" class="prev"><<</a>
+					<a href="#" class="next">>></a>
+				</div>
+			</div>
+			<?php endif; ?>
+			<?php wp_reset_query(); ?>
+			<div class="grid_16">
+				<h2><a href="<?php the_permalink(); ?>" class="fn" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+			</div>
+			<div class="grid_10 ">
+				<?php rewind_posts(); ?>
+				<?php if (have_posts()): the_post(); ?>
+					<?php $code = get_post_meta($post->ID, 'video_id', true); ?> 
+					<div style="text-align: center; margin: auto">
+						<object class="player" type="application/x-shockwave-flash" style="width:640px; height: 375px;" data="http://www.youtube.com/v/<?php echo $code; ?>">
+						<param name="movie" value="http://www.youtube.com/v/<?php echo $code; ?>" />
+						</object>
+					</div>
+				<?php endif; ?>
+				<?php if (get_post_meta($post->ID, 'transcription', true) != ''): ?>
+				<blockquote>
+				<strong>Transcription</strong>
+				<?php echo get_post_meta($post->ID, 'transcription', true); ?>
+				</blockquote>
+				<?php endif; ?>
+				<div>
+					<?php comments_template( '', true ); ?>
+				</div>
+			</div>
+			<div id="sidebar-primary" class="grid_5 suffix_1">
+				<div id="body-text">
+					<li class="title">Description</li>
+					<?php echo get_post_meta($post->ID, 'description', true); ?>
+				</div>
+			</div>
+		</div><!-- #content -->
+	<?php get_footer(); ?>
+	</div><!-- #container -->

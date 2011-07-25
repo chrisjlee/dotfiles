@@ -1,0 +1,63 @@
+/*
+ *  ShareBar - Creates a dynamic, vertical sharing bar to the left of a WordPress post and hides it if browser window is too small
+ *  Copyright 2010 Monjurul Dolon, http://mdolon.com/
+ *  Released under the MIT, BSD, and GPL Licenses.
+ *  More information: http://devgrow.com/sharebar
+ */
+jQuery.fn.sharebar = function(options) {
+	var defaults = {horizontal: true, swidth: 65, mobilewidth: 480, minwidth: 1218, position: 'left', leftOffset: 20, rightOffset: 10};
+	var opts = jQuery.extend(defaults, options); var o = jQuery.meta ? jQuery.extend({}, opts, jQueryjQuery.data()) : opts;
+
+	var w = jQuery(window).width();
+	var sharebar = jQuery('#sharebar');
+	var sharebarx = jQuery('#sharebarx');
+	var parent = jQuery(sharebar).parent().width();
+	var start = sharebar_init();
+
+	function sharebar_init(){
+		jQuery(sharebar).css('width',o.swidth+'px');
+		//if (o.position == 'left') jQuery(sharebar).css('marginLeft',(0-o.swidth-o.leftOffset));
+		if (o.position == 'left') jQuery(sharebar).css('left', '-96px');
+		else {
+			jQuery(sharebar).css('marginLeft',(parent+o.rightOffset));
+		}
+		if(w < o.minwidth && o.horizontal) jQuery(sharebarx).slideDown();
+		else jQuery(sharebar).fadeIn();
+		jQuery.event.add(window, "scroll", sharebar_scroll);
+		jQuery.event.add(window, "resize", sharebar_resize);
+		return jQuery(sharebar).offset().top;
+	}
+	function sharebar_resize() {
+		var w = jQuery(window).width();
+		if ((w<o.minwidth) && (w>o.mobilewidth)) {
+			jQuery(sharebar).fadeOut();
+			jQuery(sharebarx).fadeIn();
+			//if(o.horizontal) jQuery(sharebarx).slideDown();
+		} else if {
+			jQuery(sharebar).fadeOut();
+			jQuery(sharebarx).fadeOut();
+		} else {
+			jQuery(sharebar).fadeIn();
+			jQuery(sharebarx).fadeOut();
+			//if(o.horizontal) jQuery(sharebarx).slideUp();
+		}
+	}
+	function sharebar_scroll() {
+		var p = jQuery(window).scrollTop();
+		var w = jQuery(window).width();
+		if ((p+10)>start) {
+			jQuery(sharebar).css('position', 'fixed');
+			jQuery(sharebar).css('left', '50%');
+			jQuery(sharebar).css('top', '10px');
+			jQuery(sharebar).css('margin-left', '-575px');
+		}
+		else {
+			jQuery(sharebar).css('position', 'absolute');
+			jQuery(sharebar).css('left', '-96px');
+			jQuery(sharebar).css('top', '');
+			jQuery(sharebar).css('margin-left', '');
+		}
+
+	}
+
+};

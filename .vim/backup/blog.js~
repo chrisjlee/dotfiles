@@ -1,0 +1,13 @@
+jQuery(document).ready( function() {
+
+	$('.hoverbar').jCarouselLite({
+		scroll: 	1,
+		visible:	4,
+		auto:		true,
+		speed:		8000,
+		circular:	true	
+		btnNext: 	'.next',
+		btnPrev: 	'.prev'
+	});
+	
+});

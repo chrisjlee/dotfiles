@@ -1,0 +1,194 @@
+$(document).ready(function() {
+                
+        $('#account-info').hide();
+
+	$('#account-submit').click(function() {
+	
+		var id = $('#account-id').val();
+		var name = $('#account-name').val();
+		var email = $('#account-email').val();
+		var password = $('#account-password').val();
+		var password_repeat = $('#account-password-repeat').val();
+		var avatar = $('#photo-fs img').attr('src');
+
+		console.log($('#photo-fs'));
+
+		var voice = $('.account-voice:checked').val();
+
+		// getting the checked permission boxes
+		var permissions = [];
+		$('.account-permissions:checked').each(function() {
+                	permissions.push($(this).val());
+		});
+
+		$.post('index.php', {
+			action: 'write',
+			id: id,
+			name: name,
+			email: email,
+			password: password,
+ 			password_repeat: password_repeat,
+			voice: voice,
+			avatar: avatar,
+			permissions: permissions
+		}, function (data) {
+
+			data = $.parseJSON(data);
+
+			$('#account-info').fadeOut(750);
+
+			if (data['type'] == 'insert') {
+                        	$(data['output']).appendTo('#account-list').fadeIn(750);
+			}
+			else if (data['type'] == 'update') {
+                        	var update = $('#' + data['id']);
+				update.hide();
+				update.attr('title', data['name']);
+				update.children('.name').html(data['name']);
+				update.fadeIn(750);
+			}
+
+		});
+
+		return false;
+
+	});
+	
+	$('#account-list').delegate('.account-selector', 'click', function() {
+		$('#account-info').hide();
+
+		// need to check if any of the forms are filled, and if they are, confirm
+		// if user really wants to change account editor
+
+			
+		$('#account-id').val('');
+		$('#account-name').val('');
+		$('#account-email').val('');
+		$('#account-password').val('');
+		$('#account-password-repeat').val('');
+
+		$('.account-voice').removeAttr('checked');
+		
+		$('#photo-fs img').attr('src', 'template/images/default-avatar.jpg');
+
+		$('.account-permissions').removeAttr('checked');
+
+		var id = $(this).attr('id');
+
+		if ($(this).attr('id') != "add-new-account") {
+
+		       	$.post('index.php', {
+		       		action: 'data',
+				data: 'account-info',
+				id: id,
+		       	}, function (data) {
+
+				data = $.parseJSON(data);
+
+				$('#account-submit').val('Update ' + data['name'] + '\'s account!');
+
+				$('#account-id').val(data['id']);
+				$('#account-name').val(data['name']);
+				$('#account-email').val(data['email']);
+				$('#account-password').val('');
+				$('#account-password-repeat').val('');
+
+				$('.account-voice').removeAttr('checked');
+				var voice = data['voice'];
+				if (voice == 'Soprano') $('#account-voice-soprano').attr('checked', 'checked');
+				if (voice == 'Alto') $('#account-voice-alto').attr('checked', 'checked');
+				if (voice == 'Tenor') $('#account-voice-tenor').attr('checked', 'checked');
+				if (voice == 'Bass') $('#account-voice-bass').attr('checked', 'checked');
+				
+				$('#photo-fs img').attr('src', data['avatar']);
+
+				$('.account-permissions').removeAttr('checked');
+				var permissions = data['permissions'];
+				if ($.inArray('superlogin',permissions) > -1) $('#account-permissions-superlogin').attr('checked', 'checked');
+				if ($.inArray('accounts-panel',permissions) > -1) $('#account-permissions-accounts').attr('checked', 'checked');
+
+				$('#account-info').fadeIn(300);
+
+		       	});
+
+		}
+                else {
+			$('#account-submit').val('Create new account!');
+			$('#account-info').fadeIn(300);
+		}
+
+	});
+
+	$('#change-avatar').click(function() {
+
+		$('#camera-wrapper').dialog('open');
+		$('.camera').webcam({
+			width: 400,
+			height: 300,
+			mode: 'callback',
+			swffile: 'template/js/cam_canvas_only.swf',
+			debug: function (type, error) {
+                         	console.out("Error " + type + ": " + error);
+			}
+		});
+
+	});
+
+	$('#camera-wrapper').dialog({
+	
+		autoOpen: false,
+		width: 500,
+		title: "Change avatar",
+		modal: true,
+		buttons: {
+			"Take Picture": function () {
+				$(this).dialog("close");
+			},
+			Cancel: function () {
+				$(this).dialog("close");
+			}
+		}
+	});
+	// Deleting accounts
+
+	$('#account-list').delegate('.delete', 'click', function() {
+	
+        	var name = $(this).siblings('.name').html();
+		var id = $(this).parent().attr('id');
+
+		$(this).dialog({
+		
+			width: 500,
+			dialogClass: 'alert',
+			title: "Are you sure you want to delete " + name + "'s account?",
+			modal: true,
+			buttons: {
+				"Delete": function () {
+					
+					$.post('index.php', {
+				       		action: 'delete-account',
+						id: id,
+                                       	}, function (data) {
+						data = $.parseJSON(data);
+
+						if (data['validade'] == 'true') {
+                                                	$('#' + id).fadeOut(750, function() {
+							 	$(this).remove();
+							});
+						}
+						
+					});
+
+					$('#account-info').hide();
+					$(this).dialog("close");
+
+				},
+				Cancel: function () {
+					$(this).dialog("close");
+				}
+			}
+		});	
+	
+	});
+                  
+});

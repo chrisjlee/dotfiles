@@ -1,0 +1,81 @@
+/**
+ * Gray theme for Highcharts JS
+ * @author Torstein Hønsi
+ */
+
+Highcharts.theme = {
+	credit: {
+		enabled: false
+	},
+	colors: ["#CCBF79"],
+	chart: {
+		borderWidth: 0,
+		borderRadius: 15,
+		plotBackgroundColor: null,
+		plotShadow: false,
+		plotBorderWidth: 0
+	},
+	title: {
+		style: { 
+			color: '#757575',
+			font: '100 2.5em Helvetica Neue'
+		}
+	},
+	subtitle: {
+		style: { 
+			color: '#CCBF79',
+			font: '100 1.5em Helvetica Neue'
+		}
+	},
+	xAxis: {
+		gridLineWidth: 0,
+		lineColor: 'rgba(117, 117, 117, .7)',
+		tickColor: 'rgba(117, 117, 117, .7)',
+		labels: {
+			style: {
+				color: 'rgba(117, 117, 117, .7)',
+				font: '600 1.125em Helvetica Neue'
+			}
+		},
+		title: {
+			style: {
+				color: 'rgba(117, 117, 117, .7)',
+				font: '600 1.125em Helvetica Neue'
+			}				
+		}
+	},
+	yAxis: {
+		alternateGridColor: null,
+		minorTickInterval: null,
+		gridLineColor: 'rgba(117, 117, 117, .1)',
+		lineWidth: 0,
+		tickWidth: 0,
+		labels: {
+			style: {
+				color: 'rgba(117, 117, 117, .7)',
+				font: '600 1.125em Helvetica Neue'
+			}
+		},
+		title: {
+			style: {
+				color: 'rgba(117, 117, 117, .7)',
+				font: '600 1.125em Helvetica Neue'
+			}				
+		}
+	},
+	labels: {
+		style: {
+			color: 'rgba(117, 117, 117, .7)'
+		}
+	},
+	tooltip: {
+		borderWidth: 0,
+		style: {
+			color: 'rgba(117, 117, 117, .7)'
+		}
+	},
+	
+};
+
+// Apply the theme
+var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
