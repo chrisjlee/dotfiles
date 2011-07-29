@@ -16,6 +16,13 @@ set vb t_vb=
 set hls
 set ruler
 set incsearch
+" Tab Settings
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set smartindent
+
 "Shows that you are typing as command
 set showcmd
 "Mouse in console
