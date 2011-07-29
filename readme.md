@@ -8,5 +8,10 @@ This project is just a collection of dotfiles for my system. Just wanted to keep
 .prompt - contains the externalized PS/1 Configurations
 .vim - Folder contains vim configurations
 
+<h2>Thanks</h2>
+<li>Thanks to Felipe R. Rocha for the vim files. They're very well and fine tuned.</li>
+
+<li>Thanks goes out to my friend for github user: forthepoets providing me the .gitconfig file</li>
+
 <h2>Contact</h2>
 tweet @chrisjlee if you have any questions.
