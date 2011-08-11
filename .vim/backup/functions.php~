@@ -1,5 +1,0 @@
-<?
-
-add_theme_support('pot-thumbnails');
-
-?>
