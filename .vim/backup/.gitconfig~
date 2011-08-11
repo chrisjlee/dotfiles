@@ -1,8 +1,0 @@
-[user]
-	email = felipe.rocha@globerunnerseo.com
-	name = Linode Developers
-[alias]
-	oneline = log --oneline --since="5.days"
-[core]
-	autocrlf = true
-	whitespace = cr-at-eol
