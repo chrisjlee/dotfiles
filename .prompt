@@ -12,8 +12,13 @@
 
 # Setup color Variables
 #############################
-STARTFGCOLOR='\e[0;36m'
-STARTBGCOLOR="\e[0;32m"
-ENDCOLOR="\e[0m"
+#STARTFGCOLOR='\e[0;36m'
+#STARTBGCOLOR="\e[0;32m"
+#ENDCOLOR="\e[0m"
 
-export PS1="\e[0;36m\n[ $STARTFGCOLOR$STARTBGCOLOR\u@\h\e[01;35m \w $STARTBGCOLOR$STARTFGCOLOR]\e[0;32m\n\e[0;35m]$ $ENDCOLOR"
+STARTFGCOLOR="\[\e[0;36m\]" #turqouise
+STARTBGCOLOR="\[\e[0;32m\]" 
+COLORPINK="\[\e[01;35m\]"
+ENDCOLOR="\[\e[0m\]"
+
+export PS1="$STARTFGCOLOR[ $STARTBGCOLOR\u@\h $COLORPINK \w $STARTBGCOLOR$STARTFGCOLOR]\n$COLORPINK]$ $ENDCOLOR"
