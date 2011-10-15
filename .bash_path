@@ -1,0 +1,21 @@
+
+# Xampp Shortcuts
+###################################################
+
+#export LAMPP='/opt/lampp'
+#alias php='$LAMPP/bin/php'
+#alias xampp="sudo $LAMPP/lampp"
+#alias xampp.conf="sudo $EDITOR $LAMPP/etc/httpd.conf"
+#alias xampp.custom="sudo $EDITOR $LAMPP/etc/extra/httpd-custom.conf"
+
+#alias xampp.restart="sudo $LAMPP/lampp restart"
+#alias xampp.start="sudo $LAMPP/lampp start"
+#alias xampp.stop="sudo $LAMPP/lampp stop"
+
+#alias mysql='$LAMPP/bin/mysql'
+#alias mysqladmin='$LAMPP/bin/mysqladmin'
+#alias mysqldump='$LAMPP/bin/mysqldump'
+
+#alias go.vhosts="pushd /opt/lampp/etc/extra/hosts"
+
+#export DRUSH='~/.drush/'
