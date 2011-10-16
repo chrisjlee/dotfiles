@@ -1,6 +1,6 @@
-
+#
 # Xampp Shortcuts
-###################################################
+#---------------------------------------------------
 
 #export LAMPP='/opt/lampp'
 #alias php='$LAMPP/bin/php'
@@ -19,3 +19,11 @@
 #alias go.vhosts="pushd /opt/lampp/etc/extra/hosts"
 
 #export DRUSH='~/.drush/'
+
+#
+#
+#---------------------------------------------------
+
+alias apache="sudo /etc/init.d/apache2"
+alias a2="sudo /etc/init.d/apache2"
+

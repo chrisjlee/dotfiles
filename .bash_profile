@@ -23,11 +23,13 @@ alias o="nautilus"
 alias open="nautilus"
 
 # Browsers
-alias chrome="/opt/google/chrome"
+alias chrome="/opt/google/chrome/chrome"
+alias ff="/usr/bin/firefox"
 
 # Shortcuts for Editors
 alias e='$EDITOR'
 alias v="vim"
+alias n="nano"
 
 # System Files shortcuts
 
@@ -38,6 +40,8 @@ alias profile.s='source ~/.bash_profile'
 # System Folder Shortcuts
 alias dt='pushd /home/$USER/Desktop'
 alias dl='pushd /home/$USER/Downloads'
+
+alias ws="pushd $WS"
 
 #
 # Change the Bash PS in ~/.prompt file
