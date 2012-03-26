@@ -30,3 +30,12 @@ alias a2sa="pushd /etc/apache2/sites-available/"
 alias a2sd="pushd /etc/apache2/sites-available/"
 
 alias aptana="/opt/AptanaStudio3/AptanaStudio3"
+
+#
+#  Ubuntu Shortcuts
+#-------------------------------------------------
+# alias update="sudo aptitude update"
+# alias install="sudo aptitude install"
+# alias upgrade="sudo aptitude safe-upgrade"
+# alias remove="sudo aptitude remove"
+
