@@ -39,3 +39,6 @@ alias aptana="/opt/AptanaStudio3/AptanaStudio3"
 # alias upgrade="sudo aptitude safe-upgrade"
 # alias remove="sudo aptitude remove"
 
+
+# Display memory usage:
+# ps aux | awk '{print $3"\t"$6"\t"$11;sum+=$6;cpu+=$3} END {print "Total RSS", sum, "\nTotal CPU", cpu}'
