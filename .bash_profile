@@ -14,7 +14,7 @@ export WS="/home/$USER/workspace/"
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-alias ls='ls -a --color=always'
+alias ls='ls -atr --color=always'
 alias _='cd -'
 
 # Shortcuts for System Processes
@@ -23,8 +23,8 @@ alias o="nautilus"
 alias open="nautilus"
 
 # Browsers
-alias chrome="/opt/google/chrome/chrome"
-alias ff="/usr/bin/firefox"
+# alias chrome="/opt/google/chrome/chrome"
+# alias ff="/usr/bin/firefox"
 
 # Shortcuts for Editors
 alias e='$EDITOR'

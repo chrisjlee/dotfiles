@@ -1,10 +1,9 @@
 [user]
-	name = 
-	email = 
+  name = 
+  email = 
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
-
 [color]
   diff = auto
   status = auto
@@ -12,29 +11,23 @@
   interactive = auto
   ui = true
   pager = true
-
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
-
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
   old = red bold
   new = green bold
-
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
-
 [diff]
   tool = vimdiff
-
 [difftool]
   prompt = false
-
 [alias]
   d = difftool
   oneline = log --pretty="oneline"
@@ -48,4 +41,3 @@
   df = diff
   who = shortlog -s --
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  

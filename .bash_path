@@ -23,13 +23,12 @@
 #
 #  Apache2 Shortcuts
 #-------------------------------------------------
-
 alias apache="sudo /etc/init.d/apache2"
 alias a2="sudo /etc/init.d/apache2"
 alias a2sa="pushd /etc/apache2/sites-available/"
 alias a2sd="pushd /etc/apache2/sites-available/"
 
-alias aptana="/opt/AptanaStudio3/AptanaStudio3"
+#alias aptana="/opt/AptanaStudio3/AptanaStudio3"
 
 #
 #  Ubuntu Shortcuts
