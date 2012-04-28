@@ -17,6 +17,11 @@ alias ll='ls -alF'
 alias ls='ls -atr --color=always'
 alias _='cd -'
 
+# Grep!
+alias grep='grep --color=auto'
+GREP_OPTIONS='--exclude-dir=\.svn'
+export GREP_OPTIONS
+
 # Shortcuts for System Processes
 alias s="source"
 alias o="nautilus"
