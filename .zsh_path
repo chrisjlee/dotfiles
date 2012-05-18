@@ -1,0 +1,77 @@
+# Ubuntu Shortcuts
+# ###################################################
+# Setup Exports
+export EDITOR='nano'
+
+# Setup Paths
+export WS="$HOME/workspace/"
+
+# List Shortcuts
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls -atr --color=always'
+# alias _='cd -'
+
+# Grep!
+# alias grep='grep --color=auto'
+# GREP_OPTIONS='--exclude-dir=\.svn'
+# export GREP_OPTIONS
+
+# Shortcuts for System Processes
+# alias s="source"
+# alias o="nautilus"
+# alias open="nautilus"
+#
+# Browsers
+# alias chrome="/opt/google/chrome/chrome"
+# alias ff="/usr/bin/firefox"
+
+# Xampp Shortcuts
+#-------------------------------------------------
+
+# export LAMPP='/opt/lampp'
+# alias php='$LAMPP/bin/php'
+# alias xampp="sudo $LAMPP/lampp"
+# alias xampp.conf="sudo $EDITOR $LAMPP/etc/httpd.conf"
+# alias xampp.custom="sudo $EDITOR $LAMPP/etc/extra/httpd-custom.conf"
+# alias xampp.hosts="pushd /opt/lampp/etc/extra/hosts"
+
+# alias xampp.restart="sudo $LAMPP/lampp restart"
+# alias xampp.start="sudo $LAMPP/lampp start"
+# alias xampp.stop="sudo $LAMPP/lampp stop"
+
+# alias mysql='$LAMPP/bin/mysql'
+# alias mysqladmin='$LAMPP/bin/mysqladmin'
+# alias mysqldump='$LAMPP/bin/mysqldump'
+
+# export DRUSH='~/.drush/'
+
+#  Apache2 Shortcuts
+#-------------------------------------------------
+alias apache="sudo /etc/init.d/apache2"
+alias a2="sudo /etc/init.d/apache2"
+alias a2sa="pushd /etc/apache2/sites-available/"
+alias a2sd="pushd /etc/apache2/sites-available/"
+
+#  Application Shortcuts
+#-------------------------------------------------
+# alias aptana="/opt/AptanaStudio3/AptanaStudio3"
+
+#  Ubuntu Shortcuts
+#-------------------------------------------------
+# alias update="sudo aptitude update"
+# alias install="sudo aptitude install"
+# alias upgrade="sudo aptitude safe-upgrade"
+# alias remove="sudo aptitude remove"
+
+
+# Display memory usage:
+# ps aux | awk '{print $3"\t"$6"\t"$11;sum+=$6;cpu+=$3} END {print "Total RSS", sum, "\nTotal CPU", cpu}'
+
+#
+#  Drush Shortcuts
+#------------------------------------------------
+# if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
+#  alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
+# fi
