@@ -50,3 +50,4 @@ alias a2sd="pushd /etc/apache2/sites-available/"
 if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
   alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 fi
+alias a2log="/var/log/apache2"
