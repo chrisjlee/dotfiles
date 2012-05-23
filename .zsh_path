@@ -15,14 +15,14 @@ alias ls='ls -atr --color=always'
 
 # Grep!
 # alias grep='grep --color=auto'
-# GREP_OPTIONS='--exclude-dir=\.svn'
+# GREP_OPTIONS='--exclude-dir=\.git'
 # export GREP_OPTIONS
 
 # Shortcuts for System Processes
 # alias s="source"
 # alias o="nautilus"
 # alias open="nautilus"
-#
+
 # Browsers
 # alias chrome="/opt/google/chrome/chrome"
 # alias ff="/usr/bin/firefox"
@@ -52,7 +52,7 @@ alias ls='ls -atr --color=always'
 alias apache="sudo /etc/init.d/apache2"
 alias a2="sudo /etc/init.d/apache2"
 alias a2sa="pushd /etc/apache2/sites-available/"
-alias a2sd="pushd /etc/apache2/sites-available/"
+alias a2se="pushd /etc/apache2/sites-enabled/"
 
 #  Application Shortcuts
 #-------------------------------------------------
@@ -65,9 +65,12 @@ alias a2sd="pushd /etc/apache2/sites-available/"
 # alias upgrade="sudo aptitude safe-upgrade"
 # alias remove="sudo aptitude remove"
 
-
 # Display memory usage:
 # ps aux | awk '{print $3"\t"$6"\t"$11;sum+=$6;cpu+=$3} END {print "Total RSS", sum, "\nTotal CPU", cpu}'
+
+# Compass
+#------------------------------------------------
+# alias cw='compass watch --debug-info'
 
 #
 #  Drush Shortcuts

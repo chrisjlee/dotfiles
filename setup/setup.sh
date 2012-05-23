@@ -5,5 +5,7 @@ echo "=============================="
 
 for filename in "$PWD/.bash_*"
 do
-  cp -vf "$filename" $HOME
+  sudo cp -vf "$filename" $HOME
 done
+
+sudo cp -rv '$PWD/.vim*' $HOME
