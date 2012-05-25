@@ -8,4 +8,6 @@ do
   sudo cp -vf "$filename" $HOME
 done
 
-sudo cp -rv '$PWD/.vim*' $HOME
+sudo cp -rv "$PWD/.vim*" $HOME
+sudo cp -v "$PWD/.gitc*" $HOME
+sudo cp -v "$PWD/.giti*" $HOME
