@@ -12,9 +12,6 @@ ZSH_THEME="kphoen"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Turn off history verification
-setopt no_hist_verify
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -40,3 +37,9 @@ source $HOME/.zsh_path
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+setopt append_history
+setopt no_correctall
+setopt correct
+setopt no_share_history
+setopt no_hist_verify
