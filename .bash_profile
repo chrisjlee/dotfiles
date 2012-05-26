@@ -43,14 +43,13 @@ alias profile='sudo $EDITOR ~/.bash_profile'
 alias profile.s='source ~/.bash_profile'
 
 # System Folder Shortcuts
-alias dt='pushd /home/$USER/Desktop'
-alias dl='pushd /home/$USER/Downloads'
+# alias dt='pushd /home/$USER/Desktop'
+# alias dl='pushd /home/$USER/Downloads'
 
 alias ws="pushd $WS"
 
 #
 # Change the Bash PS in ~/.prompt file
 ##################################################
-
-source ~/.prompt
+source ~/.bash_prompt
 source ~/.bash_path # Shortcut for common folders
