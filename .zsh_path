@@ -79,3 +79,12 @@ alias a2se="pushd /etc/apache2/sites-enabled/"
 # if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
 #  alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 # fi
+
+# Users
+#-----------------------------------------------
+alias userlist="awk -F':' '{ print $1}' /etc/passwd"
+
+# Custom
+#----------------------------------------------
+alias ws='pushd $WS'
+alias hosts='sudo $EDITOR /etc/hosts'

@@ -33,7 +33,9 @@ ZSH_THEME="kphoen"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh_path
+if [ -f $HOME/.zsh_path ]; then
+  source $HOME/.zsh_path
+fi
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
