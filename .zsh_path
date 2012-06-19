@@ -54,7 +54,10 @@ alias apache="sudo /etc/init.d/apache2"
 alias a2="sudo /etc/init.d/apache2"
 alias a2sa="pushd /etc/apache2/sites-available/"
 alias a2se="pushd /etc/apache2/sites-enabled/"
-
+alias a2log='tail /var/log/apache2/error.log'
+alias a2alog='tail /var/log/apache2/access.log'
+alias a2c='apachectl'
+alias a2cdb='apachectl -S'
 #  Application Shortcuts
 #-------------------------------------------------
 # alias aptana="/opt/AptanaStudio3/AptanaStudio3"
