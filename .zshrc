@@ -33,8 +33,10 @@ ZSH_THEME="kphoen"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-if [ -f $HOME/.zsh_path ]; then
-  source $HOME/.zsh_path
+
+# Source zsh alias file
+if [ -f $HOME/.zsh_alias ]; then
+  source $HOME/.zsh_alias
 fi
 
 # Customize to your needs...
@@ -45,3 +47,4 @@ setopt no_correctall
 setopt correct
 setopt no_share_history
 setopt no_hist_verify
+setopt nohistverify

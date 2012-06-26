@@ -52,15 +52,20 @@ GREP_OPTIONS='--exclude-dir=\.git'
 #-------------------------------------------------
 alias apache="sudo /etc/init.d/apache2"
 alias a2="sudo /etc/init.d/apache2"
+# Apache: Site Paths
 alias a2sa="pushd /etc/apache2/sites-available/"
 alias a2se="pushd /etc/apache2/sites-enabled/"
+# Apache: Log Shortcuts
 alias a2log='tail /var/log/apache2/error.log'
 alias a2alog='tail /var/log/apache2/access.log'
+# Apache: Apachectl
 alias a2c='apachectl'
+alias a2ctl='apachectl'
 alias a2cdb='apachectl -S'
+
 #  Application Shortcuts
 #-------------------------------------------------
-# alias aptana="/opt/AptanaStudio3/AptanaStudio3"
+# alias aptana="/opt/Aptana_Studio_3/AptanaStudio3"
 
 #  Ubuntu Shortcuts
 #-------------------------------------------------

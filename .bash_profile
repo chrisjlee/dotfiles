@@ -51,5 +51,6 @@ alias ws="pushd $WS"
 #
 # Change the Bash PS in ~/.prompt file
 ##################################################
-source ~/.bash_prompt
-source ~/.bash_path # Shortcut for common folders
+
+source $HOME/.bash_prompt
+source $HOME/.bash_alias
