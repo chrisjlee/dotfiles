@@ -58,6 +58,9 @@ alias a2se="pushd /etc/apache2/sites-enabled/"
 # Apache: Log Shortcuts
 alias a2log='tail /var/log/apache2/error.log'
 alias a2alog='tail /var/log/apache2/access.log'
+# Apache: Log Clearing
+alias a2clearlog='echo "" | sudo tee /var/log/apache2/error.log'
+alias a2clearalog='echo "" | sudo tee /var/log/apache2/access.log'
 # Apache: Apachectl
 alias a2c='apachectl'
 alias a2ctl='apachectl'
@@ -96,3 +99,9 @@ alias userlist="awk -F':' '{ print $1}' /etc/passwd"
 #----------------------------------------------
 alias ws='pushd $WS'
 alias hosts='sudo $EDITOR /etc/hosts'
+
+# php
+#----------------------------------------------
+alias get.composer='curl -s http://getcomposer.org/installer | php'
+alias get.symfony='php composer.phar create-project symfony/framework-standard-edition'
+
