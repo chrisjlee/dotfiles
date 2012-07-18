@@ -25,7 +25,17 @@
 alias apache="sudo /etc/init.d/apache2"
 alias a2="sudo /etc/init.d/apache2"
 alias a2sa="pushd /etc/apache2/sites-available/"
-alias a2sd="pushd /etc/apache2/sites-available/"
+alias a2sd="pushd /etc/apache2/sites-disabled/"
+# Tail Logs
+alias a2log="tail /var/log/apache2/error.log"
+alias a2alog="tail /var/log/apache2/access.log"
+# Clear log
+alias a2clearlog='echo "" | sudo tee /var/log/apache2/error.log'
+alias a2clearalog='echo "" | sudo tee /var/log/apache2/access.log'
+# Apachectl
+alias a2c='apachectl'
+alias a2ctl='apachectl'
+alias a2cdb='apachectl -S'
 
 #
 #  Application Shortcuts
@@ -50,4 +60,3 @@ alias a2sd="pushd /etc/apache2/sites-available/"
 if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
   alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 fi
-alias a2log="/var/log/apache2"
