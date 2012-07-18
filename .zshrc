@@ -5,8 +5,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 ZSH_THEME="kphoen"
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -32,19 +33,15 @@ ZSH_THEME="kphoen"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
+
 source $ZSH/oh-my-zsh.sh
+source $HOME/.zsh_alias
 
-# Source zsh alias file
-if [ -f $HOME/.zsh_alias ]; then
-  source $HOME/.zsh_alias
-fi
-
-# Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-
-setopt append_history
-setopt no_correctall
-setopt correct
-setopt no_share_history
+# Turn off history verification
 setopt no_hist_verify
 setopt nohistverify
+
+# Customize to your needs...
+# export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
