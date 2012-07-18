@@ -5,13 +5,16 @@ This project is just a collection of dotfiles for my system. Just wanted to keep
 <h2>About the files</h2>
 
 .bash_profile - where all the alias are stored
+.bash_alias - where aliases for bash are stored
 .prompt - contains the externalized PS/1 Configurations
+.zsh_alias - my alternate
 .vim - Folder contains vim configurations
 
 <h2>Thanks</h2>
-<li>Thanks to Felipe R. Rocha for the vim files. They're very well and fine tuned.</li>
-
-<li>Thanks goes out to my friend for github user: forthepoets providing me the .gitconfig file</li>
+<ul>
+  <li>Thanks to Felipe R. Rocha (https://github.com/felipellrocha) for the vim files. They're very well and fine tuned.</li>
+  <li>Thanks goes out to my friend for Mitchell Carroll (http://github.com/llaarrll) providing me the colorized .gitconfig file</li>
+</ul>
 
 <h2>Contact</h2>
 tweet @chrisjlee if you have any questions.
