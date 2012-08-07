@@ -66,6 +66,8 @@ alias a2c='apachectl'
 alias a2ctl='apachectl'
 alias a2cdb='apachectl -S'
 
+alias php.ini="sudo $EDITOR /etc/"
+
 #  Application Shortcuts
 #-------------------------------------------------
 # alias aptana="/opt/Aptana_Studio_3/AptanaStudio3"
