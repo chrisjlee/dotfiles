@@ -10,4 +10,10 @@ sudo chmod u+x /etc/drush/drush.php
 echo "Changing Permissions of '/etc/drush/drush.php'"
 ln -s /etc/drush/drush /usr/bin/drush
 pushd '/etc/drush/'
-echo 'Drush Install complete. Now checkout with git the latest tag'
+echo '
+===================================================================
+Drush Install complete!
+
+Now checkout with git the latest tag
+==================================================================='
+exit 0
