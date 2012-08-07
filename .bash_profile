@@ -24,8 +24,8 @@ export GREP_OPTIONS
 
 # Shortcuts for System Processes
 alias s="source"
-alias o="nautilus"
-alias open="nautilus"
+# alias o="nautilus"
+# alias open="nautilus"
 
 # Browsers
 # alias chrome="/opt/google/chrome/chrome"
