@@ -9,3 +9,12 @@ function backup_phpini() {
 function install_php_intl() {
   sudo apt-get install php5-intl
 }
+function quit() {
+  echo 'Completed setting PHP up!
+	=============================================
+	'
+	exit 0
+}
+
+backup_phpini
+install_php_intl

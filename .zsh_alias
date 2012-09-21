@@ -14,19 +14,19 @@ alias ls='ls -atr --color=always'
 # alias _='cd -'
 
 # Grep!
-# alias grep='grep --color=auto'
+alias grep='grep --color=auto'
 GREP_OPTIONS='--exclude-dir=\.git'
 # GREP_OPTIONS='--exclude-dir=\.svn'
-# export GREP_OPTIONS
+export GREP_OPTIONS
 
 # Shortcuts for System Processes
-# alias s="source"
-# alias o="nautilus"
-# alias open="nautilus"
+alias s="source"
+alias o="nautilus"
+alias open="nautilus"
 
 # Browsers
-# alias chrome="/opt/google/chrome/chrome"
-# alias ff="/usr/bin/firefox"
+alias chrome="/opt/google/chrome/chrome"
+alias ff="/usr/bin/firefox"
 
 # Xampp Shortcuts
 #-------------------------------------------------
@@ -66,6 +66,8 @@ alias a2c='apachectl'
 alias a2ctl='apachectl'
 alias a2cdb='apachectl -S'
 
+alias mysql='/usr/bin/mysql'
+
 alias php.ini="sudo $EDITOR /etc/"
 
 #  Application Shortcuts
@@ -93,14 +95,19 @@ alias php.ini="sudo $EDITOR /etc/"
 #  alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 # fi
 
-# Users
+#  Users
 #-----------------------------------------------
 alias userlist="awk -F':' '{ print $1}' /etc/passwd"
 
-# Custom
+#  Custom
 #----------------------------------------------
 alias ws='pushd $WS'
 alias hosts='sudo $EDITOR /etc/hosts'
+
+#  Git
+#----------------------------------------------
+alias gpom='git pull origin master'
+alias gpum='git push origin master'
 
 # php
 #----------------------------------------------

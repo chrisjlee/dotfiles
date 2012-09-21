@@ -1,6 +1,6 @@
 [user]
-  name = 
-  email = 
+  name = Chris Lee
+  email = chrisl@getlevelten.com
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
