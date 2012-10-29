@@ -114,3 +114,6 @@ alias gpum='git push origin master'
 alias get.composer='curl -s http://getcomposer.org/installer | php'
 alias get.symfony='php composer.phar create-project symfony/framework-standard-edition'
 
+# Ubuntu: Video Settings
+#----------------------------------------------
+# alias amd=gksudo amdcccle
