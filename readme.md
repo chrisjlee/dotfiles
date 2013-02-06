@@ -10,6 +10,11 @@ This project is just a collection of dotfiles for my system. Just wanted to keep
 .zsh_alias - my alternate
 .vim - Folder contains vim configurations
 
+<h2>Installation</h2>
+<ol>
+<li>Clone this package and rename it to ~/.dotfiles . Make sure it's saved inside your home folder</li>
+<li>Next, run the setup file from the command line: <code>./setup.sh</code><br>It copies all the vim, zsh, and bashrc files into your
+</li>
 <h2>Thanks</h2>
 <ul>
   <li>Thanks to Felipe R. Rocha (https://github.com/felipellrocha) for the vim files. They're very well and fine tuned.</li>
