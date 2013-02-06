@@ -22,7 +22,8 @@ done
 
 sudo cp -rv $DOTFILES/.vim* $HOME
 sudo cp -v $DOTFILES/.gitc* $HOME
-sudo cp -v $DOTFILES/.giti* $HOME
+sudo cp -v $DOTFILES/.zsh_* $HOME
 
+# Done
 quit
 
