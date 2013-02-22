@@ -109,12 +109,18 @@ alias hosts='sudo $EDITOR /etc/hosts'
 alias gpom='git pull origin master'
 alias gpum='git push origin master'
 
-# php
+#  PHP
 #----------------------------------------------
 alias get.composer='curl -s http://getcomposer.org/installer | php'
 alias get.symfony='php composer.phar create-project symfony/framework-standard-edition'
 
-# Ubuntu: Hardware Settings
+#  Ubuntu: Hardware Settings
 #----------------------------------------------
 # alias amd='gksudo amdcccle'
 # alias hw='sudo lshw'
+
+#  Gems
+#----------------------------------------------
+# alias gemu='sudo gem update'
+# alias geml='sudo gem list'
+alias cw="compass watch --debug-info"
