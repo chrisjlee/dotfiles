@@ -1,20 +1,16 @@
 #/bin/bash
 
-function quit {
-  echo "Aborting..."
+function quit() {
   unset DOTFILES
   exit 0
 }
 
-function setup() {
-  if [ -d $HOME/.dotfiles ]; then
-    DOTFILES="$HOME/.dotfiles"
-  else
-    echo "Please move dotfiles to $DOTFILES/.dotfiles"
-    quit
-  fi
-}
-
+if [ -d $HOME/.dotfiles ]; then
+  DOTFILES="$HOME/.dotfiles"
+else
+  echo "Please move dotfiles to $DOTFILES/.dotfiles"
+  quit
+fi
 
 #--------------------------------
 #  Copy and source files
@@ -30,7 +26,7 @@ function update {
 function prompt_update() {
   echo -n "Would you like to update .dotfiles? [y/n] [n]:"
   read $prompt
-  if [ "$prompt! == "y" ]; then
+  if [ "$prompt" == "y" ]; then
     update
   else
     echo "Aborting"
