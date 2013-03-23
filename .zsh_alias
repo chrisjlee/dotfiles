@@ -66,9 +66,20 @@ alias a2c='apachectl'
 alias a2ctl='apachectl'
 alias a2cdb='apachectl -S'
 
+# nginx shortcuts
+#-------------------------------------------------
+alias nxsa='pushd /etc/nginx/sites-available'
+alias nxensite='/usr/sbin/nginx_ensite'
+alias nxdissite='/usr/sbin/nginx_dissite'
+# nginx: Logs
+alias nxlogs='tail /var/log/nginx/error.log'
+alias nxalogs='tail /var/log/nginx/access.log'
+alias nxclogs='echo "" | sudo tee /var/log/nginx/error.log'
+alias nxcalogs='echo "" | sudo tee /var/log/nginx/access.log'
+
 alias mysql='/usr/bin/mysql'
 
-alias php.ini="sudo $EDITOR /etc/"
+# alias php.ini="sudo $EDITOR /etc/php5/"
 
 #  Application Shortcuts
 #-------------------------------------------------
@@ -111,8 +122,8 @@ alias gpum='git push origin master'
 
 #  PHP
 #----------------------------------------------
-alias get.composer='curl -s http://getcomposer.org/installer | php'
-alias get.symfony='php composer.phar create-project symfony/framework-standard-edition'
+# alias get.composer='curl -s http://getcomposer.org/installer | php'
+# alias get.symfony='php composer.phar create-project symfony/framework-standard-edition'
 
 #  Ubuntu: Hardware Settings
 #----------------------------------------------
