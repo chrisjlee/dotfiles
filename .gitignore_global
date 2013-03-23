@@ -33,17 +33,23 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-#Ignore Vim Session Files
+# Ignore Vim Session Files #
+############################
 .*.sw[a-z]
-*.un~# Windows image file caches
+Session.vim
+.vim/colors/solarized
+.vim/backup
+.vim/tmp
+
+# Windows image file caches
+*.un~ 
+
 Thumbs.db 
 
 # Folder config file
 Desktop.ini
 
-Session.vim
-
-
-.vim/colors/solarized
-.vim/backup
-.vim/tmp
+# sass files
+############################
+.sass-cache
+*.scssc
