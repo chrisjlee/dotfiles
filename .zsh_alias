@@ -68,6 +68,7 @@ alias a2cdb='apachectl -S'
 
 # nginx shortcuts
 #-------------------------------------------------
+alias nx='sudo service nginx'
 alias nxsa='pushd /etc/nginx/sites-available'
 alias nxensite='/usr/sbin/nginx_ensite'
 alias nxdissite='/usr/sbin/nginx_dissite'
