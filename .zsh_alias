@@ -59,8 +59,8 @@ alias a2se="pushd /etc/apache2/sites-enabled/"
 alias a2log='tail /var/log/apache2/error.log'
 alias a2alog='tail /var/log/apache2/access.log'
 # Apache: Log Clearing
-alias a2clearlog='echo "" | sudo tee /var/log/apache2/error.log'
-alias a2clearalog='echo "" | sudo tee /var/log/apache2/access.log'
+alias a2clearlog='echo "" | sudo tee /var/log/apache2/error.log > /dev/null'
+alias a2clearalog='echo "" | sudo tee /var/log/apache2/access.log > /dev/null'
 # Apache: Apachectl
 alias a2c='apachectl'
 alias a2ctl='apachectl'
