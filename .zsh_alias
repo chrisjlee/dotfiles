@@ -73,10 +73,13 @@ alias nxsa='pushd /etc/nginx/sites-available'
 alias nxensite='/usr/sbin/nginx_ensite'
 alias nxdissite='/usr/sbin/nginx_dissite'
 # nginx: Logs
-alias nxlogs='tail /var/log/nginx/error.log'
-alias nxalogs='tail /var/log/nginx/access.log'
+alias nxlogs='sudo tail /var/log/nginx/error.log'
+alias nxalogs='sudo tail /var/log/nginx/access.log'
 alias nxclogs='echo "" | sudo tee /var/log/nginx/error.log'
 alias nxcalogs='echo "" | sudo tee /var/log/nginx/access.log'
+
+# phpfpm
+alias phpfpm="sudo /etc/init.d/php5-fpm"
 
 alias mysql='/usr/bin/mysql'
 
