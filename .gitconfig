@@ -41,8 +41,10 @@
   df = diff
   who = shortlog -s --
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ## Usage: `git invoice` to list recent commits in "pretty format"
+  invoice = log --pretty=format:'%ad - %s' --abbrev-commit --date=short
 
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-  remote = origin
-  merge = refs/heads/master
+  # Use `origin` as the default remote on the `master` branch in all cases
+  [branch "master"]
+    remote = origin
+    merge = refs/heads/master
