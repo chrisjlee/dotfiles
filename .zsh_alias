@@ -5,6 +5,7 @@ export EDITOR='nano'
 
 # Setup Paths
 export WS="$HOME/workspace/"
+PATH="$PATH:$HOME/npm/bin"
 
 # List Shortcuts
 alias l='ls -CF'
