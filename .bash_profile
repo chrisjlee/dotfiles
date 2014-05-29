@@ -10,6 +10,9 @@ export EDITOR='nano'
 # Setup Paths
 export WS="/home/$USER/workspace/"
 
+# Add path for nodejs
+PATH="$PATH:$HOME/npm/bin"
+
 # List Shortcuts
 alias l='ls -CF'
 alias la='ls -A'
