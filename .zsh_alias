@@ -140,3 +140,8 @@ alias gpum='git push origin master'
 # alias gemu='sudo gem update'
 # alias geml='sudo gem list'
 alias cw="compass watch --debug-info"
+
+
+## Autoloading
+#----------------------------------------------
+. ~/.nvm/nvm.sh
