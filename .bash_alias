@@ -60,3 +60,8 @@ alias a2cdb='apachectl -S'
 if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
   alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 fi
+
+#
+#  Node.js Shortcuts
+#------------------------------------------------
+alias e='ember'
