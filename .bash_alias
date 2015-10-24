@@ -1,4 +1,3 @@
-#
 # Xampp Shortcuts
 #-------------------------------------------------
 
@@ -19,7 +18,6 @@
 
 #export DRUSH='~/.drush/'
 
-#
 #  Apache2 Shortcuts
 #-------------------------------------------------
 alias apache="sudo /etc/init.d/apache2"
@@ -37,12 +35,10 @@ alias a2c='apachectl'
 alias a2ctl='apachectl'
 alias a2cdb='apachectl -S'
 
-#
 #  Application Shortcuts
 #-------------------------------------------------
 # alias aptana="/opt/AptanaStudio3/AptanaStudio3"
 
-#
 #  Ubuntu Shortcuts
 #-------------------------------------------------
 # alias update="sudo aptitude update"
@@ -54,14 +50,17 @@ alias a2cdb='apachectl -S'
 # Display memory usage:
 # ps aux | awk '{print $3"\t"$6"\t"$11;sum+=$6;cpu+=$3} END {print "Total RSS", sum, "\nTotal CPU", cpu}'
 
-#
 #  Drush Shortcuts
 #------------------------------------------------
 if [ -f "/home/$USER/.drush/drush/drushrc.php" ]; then
   alias drushrc="sudo $EDITOR /home/$USER/.drush/drush/drushrc.php"
 fi
 
-#
 #  Node.js Shortcuts
 #------------------------------------------------
 alias e='ember'
+
+
+# GitHub
+#------------------------------------------------
+alias ghauth='ssh -T -ai ~/.ssh/id_rsa git@github.com'
