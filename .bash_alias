@@ -63,4 +63,5 @@ alias e='ember'
 
 # GitHub
 #------------------------------------------------
+# See https://help.github.com/articles/error-key-already-in-use/
 alias ghauth='ssh -T -ai ~/.ssh/id_rsa git@github.com'
