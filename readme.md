@@ -18,10 +18,10 @@ This project is just a collection of dotfiles for my home folder. My intention i
 
 ---
 
-## Thanks</h2>
+## Contributors</h2>
 <ul>
-  <li>Thanks to Felipe R. Rocha (@felipellrocha) for the vim files.</li>
-  <li>Thanks goes out to my friend for Mitchell Carroll (http://github.com/llaarrll) providing me the colorized .gitconfig file</li>
+  <li>Thanks to Felipe R. Rocha ([@felipellrocha](https://github.com/felipellrocha)) for the vim files.</li>
+  <li>Thanks goes out to my friend for [Mitchell Carroll](http://github.com/llaarrll) providing me the colorized .gitconfig file</li>
 </ul>
 
 ## Contact
