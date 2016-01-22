@@ -44,10 +44,12 @@ Session.vim
 # Windows image file caches
 *.un~ 
 
+# OS files
 Thumbs.db 
 
 # Folder config file
 Desktop.ini
+.idea
 
 # sass files
 ############################
