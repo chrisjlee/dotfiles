@@ -51,6 +51,17 @@ alias profile.s='source ~/.bash_profile'
 
 alias ws="pushd $WS"
 
+# git aliases
+
+alias gst='git status -sb'
+alias gd='git diff --relative --no-prefix | e'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gco='git checkout'
+alias gl="git log --oneline --reverse"
+
 #
 # Change the Bash PS in ~/.prompt file
 ##################################################
