@@ -49,7 +49,6 @@
 [branch "master"]
   remote = origin
   merge = refs/heads/master
-
 [merge]
   # See http://nvie.com/posts/a-successful-git-branching-model/
   # The --no-ff flag causes the merge to always create a new commit object, even if the 
@@ -57,4 +56,5 @@
   # the historical existence of a feature branch and groups together all commits 
   # that together added the feature. 
   ff = false
-
+[branch]
+  autosetuprebase = always
