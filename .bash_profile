@@ -54,6 +54,7 @@ alias ws="pushd $WS"
 # git aliases
 
 alias ga='git add'
+alias gst='git status'
 alias gsb='git status -sb'
 alias gd='git diff --relative --no-prefix | e'
 alias gc='git commit -v'
