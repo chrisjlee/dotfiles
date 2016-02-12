@@ -58,3 +58,7 @@
   ff = false
 [branch]
   autosetuprebase = always
+[fetch]
+  # Prune always to remove remote branches
+  # http://stackoverflow.com/questions/18308535/automatic-prune-with-git-fetch-or-pull
+  prune = true
