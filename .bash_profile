@@ -22,7 +22,7 @@ alias _='cd -'
 
 # Grep!
 alias grep='grep --color=auto'
-GREP_OPTIONS='--exclude-dir=\.svn'
+GREP_OPTIONS='--exclude-dir=\.git --exclude-dir=\.svn'
 export GREP_OPTIONS
 
 # Shortcuts for System Processes
