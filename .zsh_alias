@@ -7,6 +7,13 @@ export EDITOR='nano'
 export WS="$HOME/workspace/"
 PATH="$PATH:$HOME/npm/bin"
 
+# Ubuntu
+#
+# Disable three finger tapping
+# http://askubuntu.com/questions/133207/how-can-i-disable-the-multitouch-gestures-in-ubuntu
+synclient ClickFinger3=2
+synclient TapButton3=2
+
 # List Shortcuts
 alias l='ls -CF'
 alias la='ls -A'
