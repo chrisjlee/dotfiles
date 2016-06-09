@@ -1,3 +1,7 @@
+# Setup PATHS
+# export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Chrome launching function
 # http://stackoverflow.com/questions/6200756/run-mac-chrome-with-command-line-arguments-as-a-background-process
 
 chrome () {
