@@ -1,0 +1,7 @@
+# http://stackoverflow.com/questions/6200756/run-mac-chrome-with-command-line-arguments-as-a-background-process
+
+chrome () {
+  /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome $* 2>&1 &
+}
+
+alias chromex="chrome --disable-web-security"
