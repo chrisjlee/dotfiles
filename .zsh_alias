@@ -11,8 +11,9 @@ PATH="$PATH:$HOME/npm/bin"
 #
 # Disable three finger tapping
 # http://askubuntu.com/questions/133207/how-can-i-disable-the-multitouch-gestures-in-ubuntu
-synclient ClickFinger3=2
-synclient TapButton3=2
+# http://askubuntu.com/questions/557577/disable-trackpad-two-fingers-double-tap-with-third-finger-bringing-up-alt-tab
+synclient ClickFinger3=0
+synclient TapButton3=0
 
 # List Shortcuts
 alias l='ls -CF'
