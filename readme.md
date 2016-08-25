@@ -20,8 +20,8 @@ This project is just a collection of dotfiles for my home folder. My intention i
 
 ## Contributors
 
-  * Thanks to Felipe R. Rocha (@felipellrocha)[https://github.com/felipellrocha] for the vim files.</li>
-  * Thanks goes out to my friend for Mitchell Carroll(http://github.com/llaarrll) providing me the colorized `.gitconfig` file
+  * Thanks to Felipe R. Rocha ([@felipellrocha](https://github.com/felipellrocha)) for the vim files.</li>
+  * Thanks goes out to my friend for Mitchell Carroll([@llaarrll](http://github.com/llaarrll)) providing me the colorized `.gitconfig` file
 
 ## Contact
 Tweet @chrisjlee if you have any questions.
