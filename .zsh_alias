@@ -4,22 +4,28 @@
 export EDITOR='nano'
 
 # Setup Paths
-export WS="$HOME/workspace/"
-PATH="$PATH:$HOME/npm/bin"
+# export WS="$HOME/workspace/"
+export CB="$HOME/code/"
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+PATH="$NPM_PACKAGES/bin:$PATH"
 
 # Ubuntu
 #
 # Disable three finger tapping
 # http://askubuntu.com/questions/133207/how-can-i-disable-the-multitouch-gestures-in-ubuntu
 # http://askubuntu.com/questions/557577/disable-trackpad-two-fingers-double-tap-with-third-finger-bringing-up-alt-tab
-synclient ClickFinger3=0
-synclient TapButton3=0
+#
+# synclient ClickFinger3=0
+# synclient TapButton3=0
 
-# List Shortcuts
+# LS
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-alias ls='ls -atr --color=always'
+# alias ls='ls -atr --color=always'
 # alias _='cd -'
 
 # Grep!
@@ -28,9 +34,10 @@ GREP_OPTIONS='--exclude-dir={\.git,\.svn} --exclude={*.exe, *.log}'
 export GREP_OPTIONS
 
 # Shortcuts for System Processes
-alias s="source"
-alias o="nautilus"
-alias open="nautilus"
+alias s='source'
+alias e='echo'
+# alias o="nautilus"
+# alias open="nautilus"
 
 # Browsers
 alias chrome="/opt/google/chrome/chrome"
@@ -152,3 +159,51 @@ alias cw="compass watch --debug-info"
 ## Autoloading
 #----------------------------------------------
 . ~/.nvm/nvm.sh
+
+## Docker
+#----------------------------------------------
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Get process included stop container
+alias dpa="docker ps -a"
+
+# Get images
+alias di="docker images"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test 
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# Bash into running container
+dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
