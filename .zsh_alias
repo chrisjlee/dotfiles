@@ -138,6 +138,7 @@ alias hosts='sudo $EDITOR /etc/hosts'
 #----------------------------------------------
 alias gpom='git pull origin master'
 alias gpum='git push origin master'
+alias gbra='git branch | grep -v "master" | xargs git branch -D'
 
 #  PHP
 #----------------------------------------------
